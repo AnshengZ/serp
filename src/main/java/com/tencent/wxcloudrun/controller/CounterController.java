@@ -1,6 +1,7 @@
 package com.tencent.wxcloudrun.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.tencent.wxcloudrun.dto.ProductRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.tencent.wxcloudrun.config.ApiResponse;
@@ -32,7 +33,7 @@ public class CounterController {
 
 
   /**
-   * 获取当前计数
+   * 获取
    * @return API response json
    */
   @GetMapping(value = "/pdt/get/{pid}")
@@ -43,6 +44,16 @@ public class CounterController {
     js.put("pid","123131");
     js.put("count",1);
     return ApiResponse.ok(js);
+  }
+  /**
+   * 自增
+   * @param request {@link ProductRequest}
+   * @return API response json
+   */
+  @PostMapping(value = "/pdt/add")
+  ApiResponse add(@RequestBody ProductRequest request) {
+    logger.info("add req:{}",request);
+    return ApiResponse.ok(0);
   }
   /**
    * 获取当前计数
@@ -69,7 +80,6 @@ public class CounterController {
   @PostMapping(value = "/api/count")
   ApiResponse create(@RequestBody CounterRequest request) {
     logger.info("/api/count post request, action: {}", request.getAction());
-
     Optional<Counter> curCounter = counterService.getCounter(1);
     if (request.getAction().equals("inc")) {
       Integer count = 1;
