@@ -7,10 +7,8 @@ import com.tencent.wxcloudrun.dto.CounterRequest;
 import com.tencent.wxcloudrun.model.Counter;
 import com.tencent.wxcloudrun.service.CounterService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.boot.configurationprocessor.json.JSONObject;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -32,6 +30,16 @@ public class CounterController {
   }
 
 
+
+  /**
+   * 获取当前计数
+   * @return API response json
+   */
+  @GetMapping(value = "/pdt/get/{pid}")
+  ApiResponse getPdt(@PathVariable String pid) {
+    logger.info("/api/count get request"+pid);
+    return ApiResponse.ok("{\"date\":false,\"pid\":\"11231\",\"info\":\"FlvaQv4he4\",\"name\":\"电信小翼版SL181小鹤台灯模型\"}");
+  }
   /**
    * 获取当前计数
    * @return API response json
