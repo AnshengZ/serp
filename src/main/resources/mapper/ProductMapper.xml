@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tencent.wxcloudrun.dao.ProductMapper">
+
+    <resultMap id="productMapper" type="com.tencent.wxcloudrun.model.Product">
+        <id property="id" column="id"/>
+        <result property="brand" column="brand"/>
+        <result property="code" column="code"/>
+        <result property="name" column="product_name"/>
+        <result property="type" column="product_type"/>
+        <result property="info" column="product_info"/>
+        <result property="num" column="product_num"/>
+        <result property="status" column="status"/>
+        <result property="createdAt" column="created_time" javaType="java.time.LocalDateTime" />
+        <result property="updatedAt" column="updated_time" javaType="java.time.LocalDateTime"  />
+    </resultMap>
+    <sql id="baseColumn" >
+    <![CDATA[
+        `id`, `brand`,`code`,`product_name`,`product_type`,`product_info`, `product_num`,`created_time`, `updated_time`
+        ]]>
+  </sql>
+    <select id="getProduct" resultMap="productMapper" parameterType="java.lang.Integer">
+        SELECT
+        <include refid="baseColumn" />
+        FROM smart_product
+        WHERE id = #{id} and status = 1
+    </select>
+
+    <select id="getProductByCode" resultMap="productMapper" parameterType="java.lang.String">
+        SELECT
+        <include refid="baseColumn" />
+        FROM smart_product
+        WHERE code = #{code} and status = 1
+    </select>
+
+    <delete id="clearProduct" parameterType="java.lang.String">
+        DELETE
+        FROM smart_product
+        where code = #{code}
+        limit 1
+    </delete>
+
+    <update id="upsertProduct" parameterType="com.tencent.wxcloudrun.model.Product">
+        INSERT INTO `smart_product` (`id`,`brand`, `code`,`product_name`,`product_type`,`product_info`, `product_num`)
+        VALUE(#{id},#{brand}, #{code}, #{name}, #{type}, #{info}, #{num})
+        ON DUPLICATE KEY UPDATE product_num=#{num}
+    </update>
+
+</mapper>

@@ -9,7 +9,9 @@ public class ProductRequest {
 
     private String name;
 
-    private String pid;
+    private String code;
+
+    private String type;
 
     private String info;
 }

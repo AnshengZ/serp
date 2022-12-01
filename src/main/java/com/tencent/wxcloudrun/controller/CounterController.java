@@ -33,29 +33,6 @@ public class CounterController {
 
 
   /**
-   * 获取
-   * @return API response json
-   */
-  @GetMapping(value = "/pdt/get/{pid}")
-  ApiResponse getPdt(@PathVariable String pid) {
-    logger.info("/api/count get request"+pid);
-    JSONObject js = new JSONObject();
-    js.put("name","ptd");
-    js.put("pid","123131");
-    js.put("count",1);
-    return ApiResponse.ok(js);
-  }
-  /**
-   * 自增
-   * @param request {@link ProductRequest}
-   * @return API response json
-   */
-  @PostMapping(value = "/pdt/add")
-  ApiResponse add(@RequestBody ProductRequest request) {
-    logger.info("add req:{}",request);
-    return ApiResponse.ok(0);
-  }
-  /**
    * 获取当前计数
    * @return API response json
    */
