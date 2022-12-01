@@ -15,28 +15,34 @@ import java.util.Optional;
 
 @RestController
 public class ProductController {
-     Logger logger = LoggerFactory.getLogger(ProductController.class);
+    Logger logger = LoggerFactory.getLogger(ProductController.class);
 
     @Resource
     ProductService productService;
 
     /**
      * 获取
+     *
      * @return API response json
      */
     @GetMapping(value = "/pdt/get/{code}")
     ApiResponse getPdt(@PathVariable String code) {
         Optional<Product> productByCode = productService.getProductByCode(code);
-        return ApiResponse.ok(productByCode.get());
+        if (productByCode.isPresent()) {
+            return ApiResponse.ok(productByCode.get());
+        }
+        return ApiResponse.ok(null);
     }
+
     /**
      * 自增
+     *
      * @param request {@link ProductRequest}
      * @return API response json
      */
     @PostMapping(value = "/pdt/add")
     ApiResponse add(@RequestBody ProductRequest request) {
-        logger.info("add req:{}",request);
+        logger.info("add req:{}", request);
         Optional<Product> productByCode = productService.getProductByCode(request.getCode());
         Integer count = 1;
         if (productByCode.isPresent()) {
@@ -56,7 +62,8 @@ public class ProductController {
 
     /**
      * 删除
-     * @param  {@link ProductRequest}
+     *
+     * @param {@link ProductRequest}
      * @return API response json
      */
     @DeleteMapping(value = "/pdt/del/{code}")

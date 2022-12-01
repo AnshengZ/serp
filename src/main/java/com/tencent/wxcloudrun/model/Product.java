@@ -29,6 +29,7 @@ public class Product implements Serializable {
     private int num;
 
     private int status;
+
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
