@@ -56,10 +56,10 @@ public class ProductController {
 
     /**
      * 删除
-     * @param request {@link ProductRequest}
+     * @param  {@link ProductRequest}
      * @return API response json
      */
-    @DeleteMapping(value = "/pdt/add/{code}")
+    @DeleteMapping(value = "/pdt/del/{code}")
     ApiResponse add(@PathVariable String code) {
         productService.clearProduct(code);
         return ApiResponse.ok(0);
