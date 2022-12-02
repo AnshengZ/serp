@@ -4,6 +4,7 @@ package com.tencent.wxcloudrun.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.tencent.wxcloudrun.config.ApiResponse;
 import com.tencent.wxcloudrun.dto.ProductRequest;
+import com.tencent.wxcloudrun.model.Brand;
 import com.tencent.wxcloudrun.model.Product;
 import com.tencent.wxcloudrun.service.ProductService;
 import org.slf4j.Logger;
@@ -11,7 +12,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 public class ProductController {
@@ -27,7 +31,8 @@ public class ProductController {
      */
     @GetMapping(value = "/pdt/brand")
     ApiResponse getBrand() {
-        return ApiResponse.ok(productService.getBrands());
+        List<String> names = productService.getBrands().stream().map(Brand::getName).collect(Collectors.toList());
+        return ApiResponse.ok(names);
     }
 
     /**
