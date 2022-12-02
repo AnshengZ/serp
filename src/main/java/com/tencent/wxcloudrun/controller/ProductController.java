@@ -25,6 +25,16 @@ public class ProductController {
      *
      * @return API response json
      */
+    @GetMapping(value = "/pdt/brand")
+    ApiResponse getBrand() {
+        return ApiResponse.ok(productService.getBrands());
+    }
+
+    /**
+     * 获取
+     *
+     * @return API response json
+     */
     @GetMapping(value = "/pdt/get/{code}")
     ApiResponse getPdt(@PathVariable String code) {
         Optional<Product> productByCode = productService.getProductByCode(code);

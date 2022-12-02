@@ -1,11 +1,14 @@
 package com.tencent.wxcloudrun.service.impl;
 
+import com.tencent.wxcloudrun.dao.BrandMapper;
 import com.tencent.wxcloudrun.dao.ProductMapper;
+import com.tencent.wxcloudrun.model.Brand;
 import com.tencent.wxcloudrun.model.Product;
 import com.tencent.wxcloudrun.service.ProductService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -13,6 +16,13 @@ public class ProductServiceImpl implements ProductService {
 
     @Resource
     ProductMapper productMapper;
+
+    @Resource
+    BrandMapper brandMapper;
+    @Override
+    public List<Brand> getBrands() {
+        return brandMapper.getBrands();
+    }
 
     @Override
     public Optional<Product> getProduct(Integer id) {
