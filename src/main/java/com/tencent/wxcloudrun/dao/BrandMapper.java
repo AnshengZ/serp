@@ -12,7 +12,7 @@ public interface BrandMapper {
 
     Brand getBrandById(@Param("id") Integer id);
 
-    Brand getBrandByName(@Param("id") String name);
+    Brand getBrandByName(@Param("name") String name);
 
     List<Brand> getBrands();
 
