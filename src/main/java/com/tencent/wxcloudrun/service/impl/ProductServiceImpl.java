@@ -25,6 +25,16 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public Brand getBrand(String name) {
+        return brandMapper.getBrandByName(name);
+    }
+
+    @Override
+    public void addBrand(Brand brand) {
+        brandMapper.add(brand);
+    }
+
+    @Override
     public Optional<Product> getProduct(Integer id) {
         return Optional.ofNullable(productMapper.getProduct(id));
     }

@@ -12,6 +12,8 @@ public interface BrandMapper {
 
     Brand getBrandById(@Param("id") Integer id);
 
+    Brand getBrandByName(@Param("id") String name);
+
     List<Brand> getBrands();
 
     void add(Brand brand);

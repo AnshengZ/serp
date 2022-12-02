@@ -9,12 +9,17 @@ import java.util.Optional;
 
 public interface ProductService {
 
-  List<Brand> getBrands();
-  Optional<Product> getProduct(Integer id);
+    List<Brand> getBrands();
 
-  Optional<Product> getProductByCode(String code);
+    Brand getBrand(String name);
 
-  void upsertProduct(Product product);
+    void addBrand(Brand brand);
 
-  void clearProduct(String code);
+    Optional<Product> getProduct(Integer id);
+
+    Optional<Product> getProductByCode(String code);
+
+    void upsertProduct(Product product);
+
+    void clearProduct(String code);
 }

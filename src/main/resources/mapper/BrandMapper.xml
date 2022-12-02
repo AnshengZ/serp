@@ -7,15 +7,31 @@
         <id property="name" column="brand_name"/>
         <id property="url" column="brand_url"/>
         <id property="info" column="brand_info"/>
-        <result property="createdAt" column="created_time" javaType="java.time.LocalDateTime" />
-        <result property="updatedAt" column="updated_time" javaType="java.time.LocalDateTime"  />
+        <result property="createdAt" column="created_time" javaType="java.time.LocalDateTime"/>
+        <result property="updatedAt" column="updated_time" javaType="java.time.LocalDateTime"/>
     </resultMap>
 
-    <sql id="baseColumn" >
+    <sql id="baseColumn">
     <![CDATA[
-        `id`, `brand_name`,`brand_url`,`brand_info`,`created_time`, `updated_time`
+        `id`
+        , `brand_name`,`brand_url`,`brand_info`,`created_time`, `updated_time`
         ]]>
   </sql>
+
+    <sql id="set">
+        <if test="id != null">
+            id = #{id},
+        </if>
+        <if test="brand_name != null">
+            brand_name = #{name},
+        </if>
+        <if test="brand_url != null">
+            brand_url = #{url},
+        </if>
+        <if test="brand_info != null">
+            brand_info = #{info},
+        </if>
+    </sql>
     <select id="getBrandById" resultMap="brandMapper" parameterType="java.lang.Integer">
         SELECT
         <include refid="baseColumn"></include>
@@ -23,23 +39,36 @@
         WHERE id = #{id}
     </select>
 
-    <select id="getBrands" resultMap="brandMapper">
+    <select id="getBrandByName" resultMap="brandMapper" parameterType="java.lang.String">
         SELECT
         <include refid="baseColumn"></include>
         FROM smart_brand
+        WHERE brand_name = #{name}
+    </select>
+
+    <select id="getBrands" resultMap="brandMapper">
+        SELECT
+        <include refid="baseColumn"></include>
+        FROM smart_brand order by id;
     </select>
 
     <delete id="delete" parameterType="java.lang.Integer">
         DELETE
         FROM smart_brand
-        where id = #{id}
-        limit 1
+        where id = #{id} limit 1
     </delete>
-
-    <update id="upsertCount" parameterType="com.tencent.wxcloudrun.model.Brand">
-        INSERT INTO `smart_brand`(`id`, `count`)
-        VALUE(#{id}, #{count}) 
-        ON DUPLICATE KEY UPDATE count=#{count}
+    <insert id="add" parameterType="com.tencent.wxcloudrun.model.Brand">
+        INSERT smart_brand
+        <set>
+            <include refid="set"/>
+        </set>
+    </insert>
+    <update id="update" parameterType="com.tencent.wxcloudrun.model.Brand">
+        update smart_brand
+        <set>
+            <include refid="set"/>
+        </set>
+        where brand_name = #{name}
     </update>
 
 </mapper>

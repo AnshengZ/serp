@@ -12,7 +12,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -58,6 +57,11 @@ public class ProductController {
     @PostMapping(value = "/pdt/add")
     ApiResponse add(@RequestBody ProductRequest request) {
         logger.info("add req:{}", request);
+        Brand brand = productService.getBrand(request.getName());
+        if (brand == null) {
+            Brand bd = Brand.builder().name(request.getName()).build();
+            productService.addBrand(bd);
+        }
         Optional<Product> productByCode = productService.getProductByCode(request.getCode());
         Integer count = 1;
         if (productByCode.isPresent()) {
