@@ -22,13 +22,13 @@
         <if test="id != null">
             id = #{id},
         </if>
-        <if test="brand_name != null">
+        <if test="name != null">
             brand_name = #{name},
         </if>
-        <if test="brand_url != null">
+        <if test="url != null">
             brand_url = #{url},
         </if>
-        <if test="brand_info != null">
+        <if test="info != null">
             brand_info = #{info},
         </if>
     </sql>
