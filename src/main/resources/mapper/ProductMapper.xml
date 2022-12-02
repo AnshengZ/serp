@@ -16,7 +16,7 @@
     </resultMap>
     <sql id="baseColumn" >
     <![CDATA[
-        `id`, `brand`,`code`,`product_name`,`product_type`,`product_info`, `product_num`,`created_time`, `updated_time`
+        `id`, `brand`,`code`,`product_name`,`product_type`,`product_info`, `product_num`,`status`,`created_time`, `updated_time`
         ]]>
   </sql>
     <select id="getProduct" resultMap="productMapper" parameterType="java.lang.Integer">
