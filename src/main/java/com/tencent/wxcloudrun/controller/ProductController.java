@@ -65,6 +65,7 @@ public class ProductController {
         }
         Product pdt = Product.builder()
                 .id(request.getId())
+                .brand(request.getBrand())
                 .name(request.getName())
                 .code(request.getCode())
                 .type(request.getType())
