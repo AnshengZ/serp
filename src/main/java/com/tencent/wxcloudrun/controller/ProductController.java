@@ -49,6 +49,7 @@ public class ProductController {
             count += productByCode.get().getNum();
         }
         Product pdt = Product.builder()
+                .id(request.getId())
                 .name(request.getName())
                 .code(request.getCode())
                 .type(request.getType())

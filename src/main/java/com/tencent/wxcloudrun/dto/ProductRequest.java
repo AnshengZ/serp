@@ -5,6 +5,8 @@ import lombok.Data;
 @Data
 public class ProductRequest {
 
+    private Integer id;
+
     private String brand;
 
     private String name;
