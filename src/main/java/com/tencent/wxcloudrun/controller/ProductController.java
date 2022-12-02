@@ -57,9 +57,9 @@ public class ProductController {
     @PostMapping(value = "/pdt/add")
     ApiResponse add(@RequestBody ProductRequest request) {
         logger.info("add req:{}", request);
-        Brand brand = productService.getBrand(request.getName());
+        Brand brand = productService.getBrand(request.getBrand());
         if (brand == null) {
-            Brand bd = Brand.builder().name(request.getName()).build();
+            Brand bd = Brand.builder().name(request.getBrand()).build();
             productService.addBrand(bd);
         }
         Optional<Product> productByCode = productService.getProductByCode(request.getCode());
