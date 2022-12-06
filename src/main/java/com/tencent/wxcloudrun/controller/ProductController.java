@@ -52,10 +52,7 @@ public class ProductController {
     @GetMapping(value = "/pdt/get/{code}")
     ApiResponse getPdt(@PathVariable String code) {
         Optional<Product> productByCode = productService.getProductByCode(code);
-        if (productByCode.isPresent()) {
-            return ApiResponse.ok(productByCode.get());
-        }
-        return ApiResponse.ok(null);
+        return productByCode.map(ApiResponse::ok).orElseGet(() -> ApiResponse.ok(null));
     }
 
     /**
