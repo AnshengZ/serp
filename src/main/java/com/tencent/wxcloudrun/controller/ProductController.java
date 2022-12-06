@@ -41,8 +41,8 @@ public class ProductController {
      */
     @GetMapping(value = "/pdt/get")
     ApiResponse getPdt() {
-        Optional<Product> products = productService.getProducts();
-        return products.map(ApiResponse::ok).orElseGet(() -> ApiResponse.ok(null));
+        List<Product> products = productService.getProducts();
+        return ApiResponse.ok(products);
     }
     /**
      * 获取
