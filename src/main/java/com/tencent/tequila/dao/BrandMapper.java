@@ -1,7 +1,6 @@
-package com.tencent.wxcloudrun.dao;
+package com.tencent.tequila.dao;
 
-import com.tencent.wxcloudrun.model.Brand;
-import com.tencent.wxcloudrun.model.Counter;
+import com.tencent.tequila.model.Brand;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

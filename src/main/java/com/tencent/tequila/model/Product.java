@@ -1,4 +1,4 @@
-package com.tencent.wxcloudrun.model;
+package com.tencent.tequila.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

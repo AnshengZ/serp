@@ -1,12 +1,11 @@
-package com.tencent.wxcloudrun.controller;
+package com.tencent.tequila.controller;
 
 
-import com.alibaba.fastjson.JSONObject;
-import com.tencent.wxcloudrun.config.ApiResponse;
-import com.tencent.wxcloudrun.dto.ProductRequest;
-import com.tencent.wxcloudrun.model.Brand;
-import com.tencent.wxcloudrun.model.Product;
-import com.tencent.wxcloudrun.service.ProductService;
+import com.tencent.tequila.config.ApiResponse;
+import com.tencent.tequila.dto.ProductRequest;
+import com.tencent.tequila.model.Brand;
+import com.tencent.tequila.model.Product;
+import com.tencent.tequila.service.ProductService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -43,6 +42,16 @@ public class ProductController {
     ApiResponse getPdt() {
         List<Product> products = productService.getProducts();
         return ApiResponse.ok(products);
+    }
+    /**
+     * 获取
+     *
+     * @return API response json
+     */
+    @PostMapping(value = "/pdt/get")
+    ApiResponse getPdt(@RequestBody ProductRequest request) {
+        List<Product> products = productService.getProductByParams(request);
+        return  ApiResponse.ok(products);
     }
     /**
      * 获取

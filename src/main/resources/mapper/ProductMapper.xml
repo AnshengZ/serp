@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.tencent.wxcloudrun.dao.ProductMapper">
+<mapper namespace="com.tencent.tequila.dao.ProductMapper">
 
-    <resultMap id="productMapper" type="com.tencent.wxcloudrun.model.Product">
+    <resultMap id="productMapper" type="com.tencent.tequila.model.Product">
         <id property="id" column="id"/>
         <result property="brand" column="brand"/>
         <result property="code" column="code"/>
@@ -15,6 +15,7 @@
         <result property="createdAt" column="created_time" javaType="java.time.LocalDateTime" />
         <result property="updatedAt" column="updated_time" javaType="java.time.LocalDateTime"  />
     </resultMap>
+
     <sql id="baseColumn" >
     <![CDATA[
         `id`, `brand`,`code`,`product_name`,`product_type`,`product_info`, `product_num`,`status`,`add_time`,`created_time`, `updated_time`
@@ -32,6 +33,21 @@
         FROM smart_product
         WHERE id = #{id} and status = 1
     </select>
+    <select id="getProductByParams" resultMap="productMapper" parameterType="com.tencent.tequila.model.Product">
+        SELECT
+        <include refid="baseColumn" />
+        FROM smart_product
+        WHERE status = 1
+        <if test="name != null">
+            and  product_name = #{name},
+        </if>
+        <if test="brand != null">
+            and brand = #{brand},
+        </if>
+        <if test="type != null">
+            and product_type = #{type},
+        </if>
+    </select>
 
     <select id="getProductByCode" resultMap="productMapper" parameterType="java.lang.String">
         SELECT
@@ -47,7 +63,7 @@
         limit 1
     </delete>
 
-    <update id="upsertProduct" parameterType="com.tencent.wxcloudrun.model.Product">
+    <update id="upsertProduct" parameterType="com.tencent.tequila.model.Product">
         INSERT INTO `smart_product` (`id`,`brand`, `code`,`product_name`,`product_type`,`product_info`, `product_num`,add_time)
         VALUE(#{id},#{brand}, #{code}, #{name}, #{type}, #{info}, #{num},DATE_FORMAT(NOW(),'%Y-%m-%d'))
         ON DUPLICATE KEY UPDATE product_num=#{num}

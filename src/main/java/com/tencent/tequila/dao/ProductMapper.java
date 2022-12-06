@@ -1,6 +1,7 @@
-package com.tencent.wxcloudrun.dao;
+package com.tencent.tequila.dao;
 
-import com.tencent.wxcloudrun.model.Product;
+import com.tencent.tequila.dto.ProductRequest;
+import com.tencent.tequila.model.Product;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -18,4 +19,6 @@ public interface ProductMapper {
   void upsertProduct(Product product);
 
   void clearProduct(@Param("id") String code);
+
+  List<Product> getProductByParams(ProductRequest request);
 }

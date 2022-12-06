@@ -1,10 +1,11 @@
-package com.tencent.wxcloudrun.service.impl;
+package com.tencent.tequila.service.impl;
 
-import com.tencent.wxcloudrun.dao.BrandMapper;
-import com.tencent.wxcloudrun.dao.ProductMapper;
-import com.tencent.wxcloudrun.model.Brand;
-import com.tencent.wxcloudrun.model.Product;
-import com.tencent.wxcloudrun.service.ProductService;
+import com.tencent.tequila.dao.BrandMapper;
+import com.tencent.tequila.dao.ProductMapper;
+import com.tencent.tequila.dto.ProductRequest;
+import com.tencent.tequila.model.Brand;
+import com.tencent.tequila.model.Product;
+import com.tencent.tequila.service.ProductService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -57,5 +58,10 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void clearProduct(String code) {
         productMapper.clearProduct(code);
+    }
+
+    @Override
+    public List<Product> getProductByParams(ProductRequest request) {
+        return productMapper.getProductByParams(request);
     }
 }

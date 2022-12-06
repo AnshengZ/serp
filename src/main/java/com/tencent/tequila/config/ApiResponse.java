@@ -1,4 +1,4 @@
-package com.tencent.wxcloudrun.config;
+package com.tencent.tequila.config;
 
 import lombok.Data;
 

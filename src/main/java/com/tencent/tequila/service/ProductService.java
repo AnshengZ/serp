@@ -1,8 +1,8 @@
-package com.tencent.wxcloudrun.service;
+package com.tencent.tequila.service;
 
-import com.tencent.wxcloudrun.model.Brand;
-import com.tencent.wxcloudrun.model.Counter;
-import com.tencent.wxcloudrun.model.Product;
+import com.tencent.tequila.dto.ProductRequest;
+import com.tencent.tequila.model.Brand;
+import com.tencent.tequila.model.Product;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,4 +24,6 @@ public interface ProductService {
     void upsertProduct(Product product);
 
     void clearProduct(String code);
+
+    List<Product> getProductByParams(ProductRequest request);
 }

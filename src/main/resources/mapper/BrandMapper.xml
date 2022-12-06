@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.tencent.wxcloudrun.dao.BrandMapper">
+<mapper namespace="com.tencent.tequila.dao.BrandMapper">
 
-    <resultMap id="brandMapper" type="com.tencent.wxcloudrun.model.Brand">
+    <resultMap id="brandMapper" type="com.tencent.tequila.model.Brand">
         <id property="id" column="id"/>
         <id property="name" column="brand_name"/>
         <id property="url" column="brand_url"/>
@@ -57,13 +57,13 @@
         FROM smart_brand
         where id = #{id} limit 1
     </delete>
-    <insert id="add" parameterType="com.tencent.wxcloudrun.model.Brand">
+    <insert id="add" parameterType="com.tencent.tequila.model.Brand">
         INSERT smart_brand
         <set>
             <include refid="set"/>
         </set>
     </insert>
-    <update id="update" parameterType="com.tencent.wxcloudrun.model.Brand">
+    <update id="update" parameterType="com.tencent.tequila.model.Brand">
         update smart_brand
         <set>
             <include refid="set"/>
