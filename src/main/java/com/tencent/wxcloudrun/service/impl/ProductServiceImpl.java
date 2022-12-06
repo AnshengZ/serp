@@ -35,8 +35,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Optional<Product> getProducts() {
-        return Optional.ofNullable(productMapper.getProducts());
+    public List<Product> getProducts() {
+        return productMapper.getProducts();
     }
 
     @Override
