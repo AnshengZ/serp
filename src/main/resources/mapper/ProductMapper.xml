@@ -17,7 +17,7 @@
     </resultMap>
     <sql id="baseColumn" >
     <![CDATA[
-        `id`, `brand`,`code`,`product_name`,`product_type`,`product_info`, `product_num`,`status`,`add_time`,created_time`, `updated_time`
+        `id`, `brand`,`code`,`product_name`,`product_type`,`product_info`, `product_num`,`status`,`add_time`,`created_time`, `updated_time`
         ]]>
     </sql>
     <select id="getProducts" resultMap="productMapper">
