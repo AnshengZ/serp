@@ -28,6 +28,8 @@ public class Product implements Serializable {
 
     private int num;
 
+    private String time;
+
     private int status;
 
     private LocalDateTime createdAt;

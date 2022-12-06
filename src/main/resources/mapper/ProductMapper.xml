@@ -10,13 +10,14 @@
         <result property="type" column="product_type"/>
         <result property="info" column="product_info"/>
         <result property="num" column="product_num"/>
+        <result property="time" column="add_time"/>
         <result property="status" column="status"/>
         <result property="createdAt" column="created_time" javaType="java.time.LocalDateTime" />
         <result property="updatedAt" column="updated_time" javaType="java.time.LocalDateTime"  />
     </resultMap>
     <sql id="baseColumn" >
     <![CDATA[
-        `id`, `brand`,`code`,`product_name`,`product_type`,`product_info`, `product_num`,`status`,`created_time`, `updated_time`
+        `id`, `brand`,`code`,`product_name`,`product_type`,`product_info`, `product_num`,`status`,`add_time`,created_time`, `updated_time`
         ]]>
     </sql>
     <select id="getProducts" resultMap="productMapper">
