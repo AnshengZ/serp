@@ -18,7 +18,13 @@
     <![CDATA[
         `id`, `brand`,`code`,`product_name`,`product_type`,`product_info`, `product_num`,`status`,`created_time`, `updated_time`
         ]]>
-  </sql>
+    </sql>
+    <select id="getProducts" resultMap="productMapper">
+        SELECT
+        <include refid="baseColumn" />
+        FROM smart_product
+        WHERE status = 1
+    </select>
     <select id="getProduct" resultMap="productMapper" parameterType="java.lang.Integer">
         SELECT
         <include refid="baseColumn" />
@@ -41,8 +47,8 @@
     </delete>
 
     <update id="upsertProduct" parameterType="com.tencent.wxcloudrun.model.Product">
-        INSERT INTO `smart_product` (`id`,`brand`, `code`,`product_name`,`product_type`,`product_info`, `product_num`)
-        VALUE(#{id},#{brand}, #{code}, #{name}, #{type}, #{info}, #{num})
+        INSERT INTO `smart_product` (`id`,`brand`, `code`,`product_name`,`product_type`,`product_info`, `product_num`,add_time)
+        VALUE(#{id},#{brand}, #{code}, #{name}, #{type}, #{info}, #{num},DATE_FORMAT(NOW(),'%Y-%m-%d'))
         ON DUPLICATE KEY UPDATE product_num=#{num}
     </update>
 

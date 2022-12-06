@@ -15,6 +15,8 @@ public interface ProductService {
 
     void addBrand(Brand brand);
 
+    Optional<Product> getProducts();
+
     Optional<Product> getProduct(Integer id);
 
     Optional<Product> getProductByCode(String code);

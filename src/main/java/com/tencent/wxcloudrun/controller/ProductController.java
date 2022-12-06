@@ -39,6 +39,19 @@ public class ProductController {
      *
      * @return API response json
      */
+    @GetMapping(value = "/pdt/get")
+    ApiResponse getPdt() {
+        Optional<Product> productByCode = productService.getProducts();
+        if (productByCode.isPresent()) {
+            return ApiResponse.ok(productByCode.get());
+        }
+        return ApiResponse.ok(null);
+    }
+    /**
+     * 获取
+     *
+     * @return API response json
+     */
     @GetMapping(value = "/pdt/get/{code}")
     ApiResponse getPdt(@PathVariable String code) {
         Optional<Product> productByCode = productService.getProductByCode(code);

@@ -7,6 +7,8 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface ProductMapper {
 
+  Product getProducts();
+
   Product getProduct(@Param("id") Integer id);
 
   Product getProductByCode(@Param("code") String code);
