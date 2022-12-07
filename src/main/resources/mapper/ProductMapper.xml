@@ -39,13 +39,13 @@
         FROM smart_product
         WHERE 1 = 1
         <if test="name != null"  >
-            and  product_name = #{name},
+            and  product_name = #{name}
         </if>
         <if test="brand != null">
-            and brand = #{brand},
+            and brand = #{brand}
         </if>
         <if test="type != null">
-            and product_type = #{type},
+            and product_type = #{type}
         </if>
         and status=1
     </select>
