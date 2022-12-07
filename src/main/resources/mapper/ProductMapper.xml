@@ -37,8 +37,8 @@
         SELECT
         <include refid="baseColumn" />
         FROM smart_product
-        WHERE status = 1
-        <if test="name != null">
+        WHERE 1 = 1
+        <if test="name != null"  >
             and  product_name = #{name},
         </if>
         <if test="brand != null">
@@ -47,6 +47,7 @@
         <if test="type != null">
             and product_type = #{type},
         </if>
+        and status=1
     </select>
 
     <select id="getProductByCode" resultMap="productMapper" parameterType="java.lang.String">
